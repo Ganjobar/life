@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\RegistrationForm;
+use app\models\Users;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -134,9 +135,8 @@ class SiteController extends Controller
 
             return $this->goBack();
         }
-
-        return $this->render('registration', [
-            'model' => $model,
-        ]);
+        $users = Users::find()->all();
+        var_dump($users);
+        return $this->render('registration', compact($model, $users));
     }
 }
