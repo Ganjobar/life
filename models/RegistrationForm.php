@@ -2,31 +2,27 @@
 namespace app\models;
 
 use Yii;
-use yii\base\Model;
+use yii\db\ActiveRecord;
 
-class RegistrationForm extends Model{
-    public $username;
-    public $password;
-    public $email;
+class RegistrationForm extends ActiveRecord {
+
     public $confirmPassword;
 
-    public $_userType = '0';
+    public static function tableName()
+    {
+        return 'user';
+    }
 
     public function rules()
     {
         return [
-            //[['username', 'email', 'password', 'confirmPassword'], 'required'],
-            ['username', 'validateUsername'],
+            [['username', 'email', 'password', 'confirmPassword'], 'required'],
+            ['username', 'unique', 'targetClass' => '\app\models\Users', 'message' => 'This username has already been taken.'],
             ['email', 'email'],
+            ['email', 'unique', 'targetClass' => '\app\models\Users', 'message' => 'This email has already been taken.'],
             ['password', 'string', 'length' => [8, 45]],
             ['confirmPassword', 'validateConfirmPassword'],
         ];
-    }
-    public function validateUsername($error)
-    {
-        if($error){
-            $this->addError($this->username, $error);
-        }
     }
     public function validateConfirmPassword($attribute)
     {

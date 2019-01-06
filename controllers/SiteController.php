@@ -10,7 +10,6 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
-use app\models\Users;
 
 class SiteController extends Controller
 {
@@ -126,18 +125,9 @@ class SiteController extends Controller
     public function actionRegistration()
     {
         $model = new RegistrationForm();
-        //echo "<br><br><br><br><br><br><br><br><br><br>";
-        //var_dump($model->username);
-        if($model->username != null){
-            $users = Users::find()->asArray()->all();
-            foreach ($users as $user) {
-                if($model->username == $user['UserName']){
-                    $model->validateUsername('This login is already taken. Please choose another username.');
-                }
-            }
-        }
 
         if ($model->load(Yii::$app->request->post()) && $model->register()) {
+            $model->save();
             return $this->goBack();
         }
         return $this->render('registration', [
