@@ -15,16 +15,18 @@ class RegistrationForm extends Model{
     public function rules()
     {
         return [
-            [['username', 'email', 'password', 'confirmPassword'], 'required'],
+            //[['username', 'email', 'password', 'confirmPassword'], 'required'],
             ['username', 'validateUsername'],
             ['email', 'email'],
             ['password', 'string', 'length' => [8, 45]],
             ['confirmPassword', 'validateConfirmPassword'],
         ];
     }
-    public function validateUsername($attribute)
+    public function validateUsername($error)
     {
-
+        if($error){
+            $this->addError($this->username, $error);
+        }
     }
     public function validateConfirmPassword($attribute)
     {

@@ -10,7 +10,6 @@ $this->title = 'Registration';
 ?>
 <div class="site-registration">
     <h1><?= Html::encode($this->title) ?></h1>
-
     <?php $form = ActiveForm::begin([
         'id' => 'registration-form',
         'layout' => 'horizontal',
