@@ -13,7 +13,7 @@ $this->title = 'My Life';
     <tr>
         <td style="width: 300px;border-radius: 10px;" >
             <p>
-                <img style="width: 300px; padding: 10px 10px 10px 10px; border-radius: 100px;" src="../../images/home.jpeg">
+                <img style="width: 270px; padding: 10px 10px 10px 10px;border-radius: 100px"  src="../images/home.jpeg">
             </p>
         </td>
 
@@ -25,42 +25,25 @@ $this->title = 'My Life';
                 Если хочешь сразу начать читать блог перейди в Календарь и нажми на любой день.
                 На этой странице я расскажу о других IT-сусликах, которые помогли мне сделать этот блог.
             </p>
-
-
         </td>
-
-
-
     </tr>
-
-
-
-
     <tr>
         <td style="width: 300px" >
             <p>
-            <img style="width: 270px; padding: 10px 10px 10px 10px;border-radius: 100px" src="../../images/Lilya.jpg">
+            <img style="width: 270px; padding: 10px 10px 10px 10px;border-radius: 100px" src="../images/Lilya.jpg">
             </p>
         </td>
-
         <td>
             <p>
             Лиля - наш главарь. Она безжалостно подганяла ІТ-сусликов и заставляла работать. Но мы её любим, не любить опасно.<br>
                 Только посмотри какая она милаха.
             </p>
-
-
         </td>
-
-
-
     </tr>
-
-
     <tr>
         <td style="width: 300px" >
             <p>
-                <img style="width: 300px; padding: 10px 10px 10px 10px;border-radius: 100px" src="../../images/Sema.jpeg">
+                <img style="width: 300px; padding: 10px 10px 10px 10px;border-radius: 100px" src="../images/Sema.jpeg">
             </p>
         </td>
 
@@ -70,37 +53,26 @@ $this->title = 'My Life';
                Сема - наши мышцы,слабоумие и отвага. Посмотрев на его боевой оскал фреймворки бояться не работать.
                 Так что всё что он кодит работает на ура.
             </p>
-
-
         </td>
-
-
-
     </tr>
     <tr>
         <td style="width: 300px" >
             <p>
-                <img style="width: 300px; padding: 10px 10px 10px 10px;border-radius: 100px" src="../../images/Edos.jpg">
+                <img style="width: 300px; padding: 10px 10px 10px 10px;border-radius: 100px" src="../images/Edos.jpg">
             </p>
         </td>
-
         <td>
             <p>
 
               Едос - талисман нашей команды. Красивый, спортивный и немножечко приверженец Диониса.
                 Держим его чтобы понимать - насколько бы крут ты не был найдётся кто-то круче.
             </p>
-
-
         </td>
-
-
-
     </tr>
     <tr>
         <td style="width: 300px" >
             <p>
-                <img style="width: 300px; padding: 10px 10px 10px 10px;border-radius: 100px" src="../../images/Alex.jpeg">
+                <img style="width: 300px; padding: 10px 10px 10px 10px;border-radius: 100px" src="../images/Alex.jpeg">
             </p>
         </td>
 
@@ -113,10 +85,7 @@ $this->title = 'My Life';
 
 
         </td>
-
-
-
     </tr>
-    </table>
+</table>
 
-</div>
+

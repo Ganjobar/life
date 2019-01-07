@@ -9,7 +9,8 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
-use app\models\ContactForm;
+use app\models\DiaryForm;
+use app\models\MyEvent;
 
 class SiteController extends Controller
 {
@@ -39,9 +40,6 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function actions()
     {
         return [
@@ -55,21 +53,11 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
     public function actionIndex()
     {
         return $this->render('index');
     }
 
-    /**
-     * Login action.
-     *
-     * @return Response|string
-     */
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
@@ -87,11 +75,6 @@ class SiteController extends Controller
         ]);
     }
 
-    /**
-     * Logout action.
-     *
-     * @return Response
-     */
     public function actionLogout()
     {
         Yii::$app->user->logout();
@@ -99,29 +82,32 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
-    /**
-     * Displays contact page.
-     *
-     * @return Response|string
-     */
-    /*public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }*/
-
-
     public function actionAbout()
     {
-        return $this->render('about');
+        $search_model = new DiaryForm();
+        $tasks = [];
+        $event = new MyEvent();
+        if (isset($_POST["search_button"])){
+            //проверить какой чек установлен и выбрать не все записи
+            //я хуй знает почему, но мне всегда приходят false чеки
+        }else{
+            //выбрать все записи
+        }
+        //перебрать в масиве артиклы и закинуть в tasks по алгоритму внизу
+        $event->id = 1;//вписать ид-ху артикла
+        $event->title = 'Testing';//наверно тайтл артикла
+        $event->start = '01.07.2019';//дату артикла
+        $event->category = "ctvf";//категорию артикла
+        $event->picture = "ctvf";//картинку артикла
+        $event->description = "ctvf";//текст артикла
+        $tasks[] = $event;
+
+        return $this->render('about', [
+            'search_model' => $search_model,
+            'events' => $tasks
+        ]);
     }
+
     public function actionRegistration()
     {
         $model = new RegistrationForm();
