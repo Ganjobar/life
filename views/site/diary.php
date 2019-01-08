@@ -27,14 +27,6 @@ use yii\bootstrap\Modal;
             });
         });
         $(function(){
-            $(document).on('click','.add', function(){
-                $.get('index.php?r=site/add',function (){
-                    $('#modal').modal('show')
-                        .find('#modalContent');
-                });
-            });
-        });
-        $(function(){
             $(document).on('click','.search', function(){
                 var check1 = document.getElementById('checkOne').checked ? 1 : 0;
                 var check2 = document.getElementById('checkTwo').checked ? 2 : 0;

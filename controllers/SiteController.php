@@ -14,7 +14,8 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\DiaryForm;
-use app\models\MyEvent;
+use app\models\Comment;
+
 
 class SiteController extends Controller
 {
@@ -125,7 +126,6 @@ class SiteController extends Controller
             'user_type' => $user_type
         ]);
     }
-
     public function actionRegistration()
     {
         $model = new RegistrationForm();
@@ -141,9 +141,11 @@ class SiteController extends Controller
     public function actionArticle($date, $text, $title, $smile, $imgUrl)
     {
         $date = trim($date);
+        $model_add = new Comment();
         $model = Article::findOne(['ACreateDate' => $date]);
         $cat_model = Category::findOne(['idCategory' => $model->idCat]);
-        $user_type = 0;
+
+        $user_type = -1;
         if(Yii::$app->user->identity){
             $user_type = Yii::$app->user->identity->UType;
         }
@@ -158,10 +160,32 @@ class SiteController extends Controller
             }
         }
 
+        $t = [];
+        $comments = Comment::findAll(['Article_ID' => $model->idArticle]);
+        foreach ($comments as $comment) {
+            $users = Users::findOne(['idUser' => $comment['idUser']]);
+            $t[] = array(
+                'id' => $users['idUser'],
+                'username' => $users['username'],
+                'comment' => $comment['ComText']
+            );
+        }
+
+        if($user_type == 1 || $user_type == 0){
+            if ($model_add->load(Yii::$app->request->post())) {
+                $model_add->idUser = Yii::$app->user->identity->idUser;
+                $model_add->Article_ID = $model->idArticle;
+                $model_add->save();
+                $model_add = new Comment();
+            }
+        }
+
         return $this->render('article', [
             'model' => $model,
             'cat_model' => $cat_model,
-            'user_type' => $user_type
+            'user_type' => $user_type,
+            't' => $t,
+            'model_add' => $model_add
         ]);
     }
 }

@@ -7,6 +7,7 @@
  */
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\bootstrap\Modal;
 
 $this->title = 'Article';
 $img_adress = "../images/home.jpeg";
@@ -24,6 +25,11 @@ $img_adress = "../images/home.jpeg";
                     element.setAttribute("readonly", "true");
                 });
                 Array.from(document.getElementsByClassName('admin')).forEach(function(element){
+                    element.style="display:none";
+                });
+            }
+            if(user != 1 && user != 0){
+                Array.from(document.getElementsByClassName('comment')).forEach(function(element){
                     element.style="display:none";
                 });
             }
@@ -79,5 +85,33 @@ $img_adress = "../images/home.jpeg";
     </tr>
 </table>
 <?php ActiveForm::end(); ?>
+<h1>Comments</h1>
+<?php
+    foreach ($t as $comment){
+        echo "<b>" . $comment['username']  . "</b><br>" . $comment['comment'];
+        echo "<hr>";
+    }
+?>
+<?php
+    Modal::begin([
+        'header' => '<h2>Add comments</h2>',
+        'toggleButton' => [
+            'label' => 'Add comments',
+            'tag' => 'button',
+            'class' => 'btn comment btn-success',
+        ]
+    ]);
+?>
+<?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
+
+    <?= $form->field($model_add, 'ComText')->textarea(['autofocus' => true]) ?>
+
+    <div class="form-group">
+        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'comment-button']) ?>
+    </div>
+
+<?php ActiveForm::end(); ?>
+<?php Modal::end();?>
+
 
 
