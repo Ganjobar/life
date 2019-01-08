@@ -158,3 +158,12 @@ a.desc:after {
 .fc-title{
     color: #2F4F4F;
 }
+.article{
+    text-align: center;
+    border: none;
+}
+.article-text{
+    width: 100%;
+    border: none;
+    resize: none;
+}
